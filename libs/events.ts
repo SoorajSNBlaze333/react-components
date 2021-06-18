@@ -1,14 +1,21 @@
-export const EventEmitter = {
+interface EventEmitterProps {
+  _events: any,
+  dispatch: Function,
+  subscribe: Function,
+  unsubscribe: Function,
+}
+
+export const EventEmitter: EventEmitterProps = {
   _events: {},
-  dispatch(event, data) {
+  dispatch(event: string, data: any) {
     if (!this._events[event]) return;
-    this._events[event].forEach((callback) => callback(data));
+    this._events[event].forEach((callback: Function) => callback(data));
   },
-  subscribe(event, callback) {
+  subscribe(event: string, callback: Function) {
     if (!this._events[event]) this._events[event] = [];
     this._events[event].push(callback);
   },
-  unsubscribe(event) {
+  unsubscribe(event: string) {
     if (!this._events[event]) return;
     delete this._events[event];
   },

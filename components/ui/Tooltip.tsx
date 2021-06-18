@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 import { Transition } from '@headlessui/react';
@@ -6,17 +6,21 @@ import { Transition } from '@headlessui/react';
 interface TooltipProps {
   html: JSX.Element,
   text: string,
-  placement: string,
   children: any,
 }
 
+const portalDiv = document.querySelector('body')!;
+
 const Tooltip = (props: TooltipProps): JSX.Element => {
-  const { html, text, placement, children } = props;
+  const { html, text, children } = props;
   const [show, toggleShow] = useState(false);
-  const [triggerElement, setTriggerElement] = useState(null);
-  const [popperElement, setPopperElement] = useState(null);
-  const { styles, attributes } = usePopper(triggerElement, popperElement, {
-    placement: placement || 'top',
+  const triggerElementRef = useRef(null);
+  const popperElementRef = useRef(null);
+  const { styles, attributes } = usePopper(
+    triggerElementRef.current,
+    popperElementRef.current,
+  {
+    placement: 'bottom',
     modifiers: [{ name: 'offset', options: { offset: [0, 10] } }],
   });
 
@@ -31,7 +35,7 @@ const Tooltip = (props: TooltipProps): JSX.Element => {
   const renderTooltip = () => {
     if (show) {
       return createPortal(
-        <div className="z-tooltip" ref={setPopperElement} style={styles.popper} {...attributes.popper}>
+        <div className="z-tooltip" ref={popperElementRef.current} style={styles.popper} {...attributes.popper}>
           <Transition
             show={show}
             enter="transition duration-100 ease-out"
@@ -47,7 +51,7 @@ const Tooltip = (props: TooltipProps): JSX.Element => {
             <div className="p-1">{text}</div>
           </Transition>
         </div>,
-        document.querySelector('body'),
+        portalDiv,
       );
     }
     return false;
@@ -60,7 +64,7 @@ const Tooltip = (props: TooltipProps): JSX.Element => {
         onMouseLeave={handleHide}
         onTouchStart={handleShow}
         onTouchCancel={handleHide}
-        ref={setTriggerElement}
+        ref={triggerElementRef.current}
       >
         {children}
       </span>
