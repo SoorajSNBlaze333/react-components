@@ -1,9 +1,14 @@
 import React from 'react';
-import { Github, LinkedIn, DevTo, Mail } from '../components/Icons';
+import { Github, LinkedIn, DevTo, Mail } from '../ui/Icons';
+
+interface LinkProps {
+  icon: JSX.Element,
+  url: string,
+}
 
 const iconClass = "h-10 w-10 text-white";
 
-const myLinks = [{
+const myLinks: LinkProps[] = [{
   icon: <Github className={iconClass} />,
   url: 'https://github.com/SoorajSNBlaze333',
 }, {
@@ -18,7 +23,7 @@ const myLinks = [{
 }]
 
 const IconTray = () => {
-  const renderLink = (link, index) => {
+  const renderLink = (link: LinkProps, index: number) => {
     return (
       <a
         href={link.url}

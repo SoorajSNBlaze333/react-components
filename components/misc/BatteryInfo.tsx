@@ -1,7 +1,8 @@
 import React from 'react';
+import Image from 'next/image';
 import Tooltip from '../ui/Tooltip';
 
-const timeChart = {
+const timeChart: any = {
   '00': {
     gif: 'https://cdn-0.emojis.wiki/wp-content/uploads/2020/12/sleeping-face.gif',
     text: 'Fast Asleep ...zzz...'
@@ -107,9 +108,11 @@ const BatteryInfo = () => {
   }
 
   return (<Tooltip
-    html={<img src={getDetails().gif} className="h-full" alt="" />}
+    html={<Image
+      src={getDetails().gif}
+      alt="What Am i doing"
+    />}
     text={getDetails().text}
-    placement="bottom"
   >
     <div className="cursor-pointer">What Am I doing...</div>
   </Tooltip>)

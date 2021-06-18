@@ -3,12 +3,16 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { EventEmitter } from '../../libs/events';
 import CommandData from '../../data/commands.json';
 
+interface CommandProps {
+  command: string,
+  index: number
+}
 
 const CommandExecuter = () => {
-  const [show, toggleShow] = useState(false);
-  const [data, setData] = useState({});
+  const [show, toggleShow] = useState<boolean>(false);
+  const [data, setData] = useState<any>({});
 
-  const handleExecCommand = ({ command, index }) => {
+  const handleExecCommand = ({ command, index }: CommandProps) => {
     const { commands } = CommandData;
     switch(command) {
       case "about": {
