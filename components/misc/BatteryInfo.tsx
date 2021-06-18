@@ -1,6 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
-import Tooltip from '../ui/Tooltip';
 
 const timeChart: any = {
   '00': {
@@ -107,15 +105,17 @@ const BatteryInfo = () => {
     return timeChart[date.getHours().toString()];
   }
 
-  return (<Tooltip
-    html={<Image
-      src={getDetails().gif}
-      alt="What Am i doing"
-    />}
-    text={getDetails().text}
-  >
-    <div className="cursor-pointer">What Am I doing...</div>
-  </Tooltip>)
+  return <div></div>
+
+  // return (<Tooltip
+  //   html={<Image
+  //     src={getDetails().gif}
+  //     alt="What Am i doing"
+  //   />}
+  //   text={getDetails().text}
+  // >
+  //   <div className="cursor-pointer">What Am I doing...</div>
+  // </Tooltip>)
 }
 
 export default BatteryInfo;

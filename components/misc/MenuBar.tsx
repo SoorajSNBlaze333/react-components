@@ -1,5 +1,4 @@
 import React from 'react';
-import BatteryInfo from './BatteryInfo';
 import { Github } from '../ui/Icons';
 
 const MenuInfo = () => (
@@ -18,7 +17,7 @@ const MenuInfo = () => (
 
 const SystemInfo = () => (
   <div className="h-full w-1/3 flex justify-end items-center">
-    <BatteryInfo />
+    {/* <BatteryInfo /> */}
     <p className="m-0 text-white cursor-pointer font-medium mx-8">Wed 9 Aug 3:45 PM</p>
   </div>
 );
