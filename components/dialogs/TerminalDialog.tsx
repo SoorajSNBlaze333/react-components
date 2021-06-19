@@ -31,7 +31,7 @@ const TerminalDialog = (props: TerminalProps) => {
   const renderContent = () => (
     <div style={{ height: 'calc(100% - 40px)'}} className="w-full flex justify-between items-center">
       <div className="h-full w-5/12 flex justify-center items-center">
-        <Profile size={32} />
+        <Profile size={150} ring={8} />
       </div>
       <div className="h-full w-7/12 text-white">
         <div className="h-full w-4/5 flex items-center">

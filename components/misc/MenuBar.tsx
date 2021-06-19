@@ -22,7 +22,7 @@ const MenuButton = ({ active, children }: MenuProps) => (
 const MenuDropdown = () => (
   <Menu as="div" className="relative inline-block cursor-pointer">
     <Menu.Button className="flex items-center m-0 focus:outline-none font-bold">
-      <Profile size={4} />
+      <Profile size={15} ring={1} />
     </Menu.Button>
     <Transition
       as={Fragment}

@@ -3,12 +3,13 @@ import Sooraj from '../../assets/sooraj.jpg';
 
 interface ProfileProps {
   size: number,
+  ring: number
 }
 
-const Profile = ({ size }: ProfileProps) => (
+const Profile = ({ size, ring }: ProfileProps) => (
   <div 
-    style={{ backgroundImage: `url(${Sooraj.src})` }}
-    className={`h-${size} w-${size} bg-cover bg-center bg-no-repeat rounded-full ring-${Math.round(size/4) <0 ? 1 : Math.round(size/4)} ring-white p-2`}
+    style={{ backgroundImage: `url(${Sooraj.src})`, height: size+"px", width: size+"px" }}
+    className={`bg-cover bg-center bg-no-repeat rounded-full ring-${ring} ring-white p-2`}
   />
 );
 
