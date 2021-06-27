@@ -1,5 +1,5 @@
 import React from 'react';
-import Sooraj from '../../assets/sooraj.jpg';
+import Sooraj from '../assets/sooraj.jpg';
 
 interface ProfileProps {
   size: number,

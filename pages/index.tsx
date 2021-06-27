@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head'
-import * as Components from '../components/misc';
+import Backdrop from '../components/Backdrop';
+import CommandExecuter from '../components/CommandExecuter';
+import Spotlight from '../components/Spotlight';
+import MenuBar from '../components/MenuBar';
 import MacOS from '../assets/macOS.jpg';
+import Keyboard from '../libs/keyboard';
 
 interface HomeProps {
   title: string,
@@ -9,16 +13,24 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   const { title } = props;
+
+  useEffect(() => {
+    Keyboard.init();
+    return () => {
+      Keyboard.destroy();
+    }
+  }, []);
+
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <Components.Backdrop backgroundImage={MacOS}>
-        <Components.MenuBar />
-        <Components.Terminal />
-        <Components.CommandExecuter />
-      </Components.Backdrop>
+      <Backdrop backgroundImage={MacOS}>
+        <MenuBar />
+        <CommandExecuter /> 
+      </Backdrop>
+      <Spotlight />
     </>
   );
 }

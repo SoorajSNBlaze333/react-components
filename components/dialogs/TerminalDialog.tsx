@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Profile from '../misc/Profile';
+import Profile from '../Profile';
 import { Dialog, Transition } from '@headlessui/react';
 
 interface TerminalProps {
@@ -29,7 +29,10 @@ const TerminalDialog = (props: TerminalProps) => {
   );
 
   const renderContent = () => (
-    <div style={{ height: 'calc(100% - 40px)'}} className="w-full flex justify-between items-center">
+    <div style={{
+      height: 'calc(100% - 40px)',
+      backgroundColor: '#202125',
+    }} className="w-full flex justify-between items-center">
       <div className="h-full w-5/12 flex justify-center items-center">
         <Profile size={150} ring={8} />
       </div>
@@ -93,12 +96,13 @@ const TerminalDialog = (props: TerminalProps) => {
             <div style={{ width: '600px', height: '300px' }} className="inline-block overflow-hidden align-middle transition-all transform shadow-xl rounded-lg ring-1 ring-gray-700">
               <Dialog.Title
                 as="h3"
-                style={{ height: '40px' }}
-                className="w-full flex bg-gray-600 border-b border-gray-700 top-0 sticky font-semibold"
+                style={{ height: '40px', backgroundColor: '#3C3D40' }}
+                className="w-full flex border-b border-gray-700 top-0 sticky font-semibold"
               >
                 {renderHeader()}
               </Dialog.Title>
               {renderContent()}
+              <button>Hello</button>
             </div>
           </Transition.Child>
         </div>

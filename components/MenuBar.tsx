@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
-import { EventEmitter } from '../../libs/events';
+import { EventEmitter } from '../libs/events';
 import Profile from './Profile';
+
 interface MenuProps {
   active: boolean,
   children: any,
@@ -34,7 +35,7 @@ const MenuDropdown = () => (
       leaveTo="transform opacity-0 scale-95"
     >
       <Menu.Items as="div" className="absolute bg-gray-700 h-auto w-60 top-6 -left-1 z-10 outline-none ring-1 ring-gray-500 rounded-md text-white">
-        <Menu.Item as="div" className="p-1" onClick={() => EventEmitter.dispatch('execCommand', { command: 'about', index: 0 })}>{(props) => <MenuButton { ...props }>About Sooraj</MenuButton>}</Menu.Item>
+        <Menu.Item as="div" className="p-1" onClick={() => EventEmitter.dispatch('execCommand', "about")}>{(props) => <MenuButton { ...props }>About Sooraj</MenuButton>}</Menu.Item>
         <Menu.Item as="hr" disabled className="mx-3 pb-1 px-1 border-1 border-gray-500"/>
         <Menu.Item as="div" className="pl-1 pr-1">{(props) => <MenuButton { ...props }>Preferences...</MenuButton>}</Menu.Item>
         <Menu.Item as="div" className="pl-1 pr-1 mb-1">{(props) => (

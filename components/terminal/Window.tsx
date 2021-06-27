@@ -122,7 +122,10 @@ const Window = () => {
   );
 
   return (
-    <div style={{ height: 'calc(100% - 60px)' }} className="w-full bg-gray-800 overflow-y-auto">
+    <div style={{
+      height: 'calc(100% - 60px)',
+      backgroundColor: '#202125',
+    }} className="w-full overflow-y-auto">
       {lineCommands.map(renderLine)}
       <p className="text-transparent bg-transparent w-full h-full" onClick={handleFocus}/>
     </div>
