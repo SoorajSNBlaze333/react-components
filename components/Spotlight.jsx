@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState, memo } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import Keyboard from '../libs/keyboard';
 import { EventEmitter } from '../libs/events';
@@ -8,9 +8,13 @@ const Spotlight = () => {
   const mountedRef = useRef(true);
   const inputRef = useRef(null);
 
-  const handleSearch = (text) => {
-    setShow(false);
-    EventEmitter.dispatch('execCommand', text);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const text = inputRef.current.value.trim().toLowerCase();
+    if (text.length) {
+      setShow(false);
+      EventEmitter.dispatch('execCommand', text);
+    };
   };
 
   useEffect(() => {
@@ -20,20 +24,6 @@ const Spotlight = () => {
       mountedRef.current = false;
     }
   }, []);
-
-  useEffect(() => {
-    const handleEnter = (e) => {
-      const text = inputRef.current.value.trim().toLowerCase();
-      if (text.length) {
-        handleSearch(text);
-      };
-    };
-    if (show) {
-      Keyboard.add("Enter", (e) => handleEnter(e))
-    } else {
-      Keyboard.remove("Enter")
-    }
-  }, [show]);
 
   return (
     <Transition appear show={show} as={Fragment}>
@@ -69,14 +59,14 @@ const Spotlight = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="h-auto w-auto inline-block overflow-hidden align-middle transition-all transform rounded-xl spotlight">
+            <form onSubmit={handleSubmit} className="h-auto w-auto inline-block overflow-hidden align-middle transition-all transform rounded-xl spotlight">
               <input
                 ref={inputRef}
                 autoFocus
                 className="bg-gray-800 bg-opacity-95 text-gray-300 text-xl outline-none p-3 rounded-xl caret-gray-300"
                 placeholder="Spotlight Search"
               />
-            </div>
+            </form>
           </Transition.Child>
         </div>
       </Dialog>
@@ -84,4 +74,4 @@ const Spotlight = () => {
   );
 };
 
-export default Spotlight;
+export default memo(Spotlight);

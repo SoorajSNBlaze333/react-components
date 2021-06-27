@@ -22,12 +22,10 @@ const Keyboard: KeyboardProps = {
     };
   }, 
   init() {
-    this.events = {};
-    this.destroy();
     window.addEventListener("keydown", (e) => this.keydown(e));
   },
   add(key: string, callback: Function) {
-    this.events[key] = { onKey: (data: any) => callback(data) }
+    this.events[key] = { onKey: (data: KeyboardEvent) => callback(data) };
   },
   remove(key: string) {
     if (this.events[key]) delete this.events[key];
