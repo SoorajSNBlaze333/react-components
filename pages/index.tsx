@@ -28,7 +28,7 @@ export default function Home(props: HomeProps) {
         <title>{title}</title>
       </Head>
       <Backdrop backgroundImage={MacOS}>
-        <MenuBar />
+        {/* <MenuBar /> */}
         <CommandExecuter /> 
       </Backdrop>
       <Spotlight />

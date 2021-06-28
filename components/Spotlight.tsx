@@ -68,7 +68,7 @@ const Spotlight = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <form onSubmit={handleSubmit} className="h-auto w-auto inline-block overflow-hidden align-middle transition-all transform rounded-xl spotlight">
+            <form onSubmit={handleSubmit} className="h-auto w-auto inline-block overflow-hidden align-middle transition-all transform rounded-xl spotlight mt-10">
               <input
                 ref={inputRef}
                 autoFocus
