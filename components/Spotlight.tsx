@@ -1,20 +1,29 @@
-import React, { Fragment, useEffect, useRef, useState, memo } from 'react';
+import React, {
+  Fragment,
+  useEffect,
+  useRef,
+  useState,
+  memo,
+  SyntheticEvent,
+} from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import Keyboard from '../libs/keyboard';
 import { EventEmitter } from '../libs/events';
 
 const Spotlight = () => {
-  const [show, setShow] = useState(false);
-  const mountedRef = useRef(true);
-  const inputRef = useRef(null);
+  const [show, setShow] = useState<boolean>(false);
+  const mountedRef = useRef<boolean>(true);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    const text = inputRef.current.value.trim().toLowerCase();
-    if (text.length) {
-      setShow(false);
-      EventEmitter.dispatch('execCommand', text);
-    };
+    if (inputRef.current) {
+      const text = inputRef.current.value.trim().toLowerCase();
+      if (text.length) {
+        setShow(false);
+        EventEmitter.dispatch('execCommand', text);
+      };
+    }
   };
 
   useEffect(() => {
@@ -63,7 +72,7 @@ const Spotlight = () => {
               <input
                 ref={inputRef}
                 autoFocus
-                className="bg-gray-800 bg-opacity-95 text-gray-300 text-xl outline-none p-3 rounded-xl caret-gray-300"
+                className="bg-gray-800 text-gray-300 text-xl outline-none p-3 rounded-xl caret-gray-300"
                 placeholder="Spotlight Search"
               />
             </form>

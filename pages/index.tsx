@@ -6,6 +6,7 @@ import Spotlight from '../components/Spotlight';
 import MenuBar from '../components/MenuBar';
 import MacOS from '../assets/macOS.jpg';
 import Keyboard from '../libs/keyboard';
+import Hints from '../components/Hints';
 
 interface HomeProps {
   title: string,
@@ -31,6 +32,8 @@ export default function Home(props: HomeProps) {
         <CommandExecuter /> 
       </Backdrop>
       <Spotlight />
+
+      <Hints />
     </>
   );
 }
