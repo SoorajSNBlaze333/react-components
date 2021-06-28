@@ -7,7 +7,8 @@ import About from './tabs/About';
 const TABS = {
   about: {
     open: false,
-    position: { x: 100, y: 100 }
+    position: { x: 50, y: 100 },
+    top: true,
   }
 };
 

@@ -40,9 +40,9 @@ const About = (props: any) => {
       <div style={{
         left: `${x}px`,
         top: `${y}px`,
-        width: '600px', 
-        height: '300px'
-      }} className="bg-white absolute rounded-lg shadow-lg">
+        width: '450px', 
+        height: '700px'
+      }} className="bg-white absolute rounded-md shadow-lg overflow-hidden">
         {renderTitle()}
         {renderContent()}
       </div>
