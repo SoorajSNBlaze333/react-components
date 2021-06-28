@@ -28,8 +28,10 @@ const Spotlight = () => {
 
   useEffect(() => {
     Keyboard.add("Ctrl+ ", () => setShow(prev => !prev));
+    EventEmitter.subscribe("toggleSearch", () => setShow(prev => !prev));
     return () => {
       Keyboard.remove("Ctrl+ ");
+      EventEmitter.unsubscribe("toggleSearch");
       mountedRef.current = false;
     }
   }, []);
@@ -68,7 +70,7 @@ const Spotlight = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <form onSubmit={handleSubmit} className="h-auto w-auto inline-block overflow-hidden align-middle transition-all transform rounded-xl spotlight mt-10">
+            <form onSubmit={handleSubmit} className="h-auto w-auto inline-block overflow-hidden align-middle transition-all transform rounded-xl mt-10 spotlight custom-shadow">
               <input
                 ref={inputRef}
                 autoFocus

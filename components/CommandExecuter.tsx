@@ -2,37 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { EventEmitter } from '../libs/events';
-import About from './tabs/About';
-
-const TABS = {
-  about: {
-    open: false,
-    position: { x: 50, y: 100 },
-    top: true,
-  }
-};
+import Tab from './Tab';
 
 const CommandExecuter = () => {
-  const [tabs, setTabs] = useState(TABS);
+  const [currentTab, setCurrentTab] = useState("");
 
-  const handleExecCommand = (command: string) => {
-    switch(command) {
-      case "about": {
-        setTabs((existingTabs) => ({
-          ...existingTabs,
-          about: {
-            ...existingTabs.about,
-            open: !existingTabs.about.open,
-          }
-        }));
-        break;
-      }
-      default: {
-        console.log("Default");
-        break;
-      }
-    };
-  };
+  const handleExecCommand = (command: string) => setCurrentTab(command);
 
   useEffect(() => {
     EventEmitter.subscribe('execCommand', handleExecCommand);
@@ -43,7 +18,7 @@ const CommandExecuter = () => {
 
   return (
     <>
-      <About about={tabs.about} onClose={() => handleExecCommand("about")} />
+      <Tab command={currentTab} onClose={() => handleExecCommand("")} />
     </>
   );
 }

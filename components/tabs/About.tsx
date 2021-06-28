@@ -1,53 +1,49 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment } from 'react';
-import { Transition } from '@headlessui/react';
+import React from "react";
+import Sooraj from "../../assets/sooraj.jpg"
 
-const About = (props: any) => {
-  const { about, onClose } = props;
-  const { x, y } = about.position;
-
-  const renderIcons = () => (
-    <div className="h-full w-full flex items-center justify-evenly">
-      <p className="rounded-full h-3 w-3 bg-red-500 ring-1 ring-gray-500 ring-opacity-65 cursor-pointer" onClick={onClose} />
-      <p className="rounded-full h-3 w-3 bg-yellow-500 ring-1 ring-gray-500 ring-opacity-65 cursor-pointer" />
-      <p className="rounded-full h-3 w-3 bg-green-500 ring-1 ring-gray-500 ring-opacity-65 cursor-pointer" />
-    </div>
-  )
-  
-  const renderTitle = () => (
-    <div style={{ height: '40px' }} className="w-full bg-gray-600 flex">
-      <div style={{ width: '70px' }}>{renderIcons()}</div>
-    </div>
-  )
-
-  const renderContent = () => (
-    <div style={{ height: 'calc(100% - 40px)' }} className="w-full bg-gray-800">
-
-    </div>
-  )
-
-  return (
-    <Transition
-      show={about.open}
-      as={Fragment}
-      enter="ease-out duration-100"
-      enterFrom="opacity-0"
-      enterTo="opacity-100"
-      leave="ease-in duration-100"
-      leaveFrom="opacity-100"
-      leaveTo="opacity-0"
-    >
-      <div style={{
-        left: `${x}px`,
-        top: `${y}px`,
-        width: '450px', 
-        height: '700px'
-      }} className="bg-white absolute rounded-md shadow-lg overflow-hidden">
-        {renderTitle()}
-        {renderContent()}
+const About = () => (
+  <div className="h-full w-full flex items-center flex-col">
+    <div
+      style={{ backgroundImage: `url(${Sooraj.src})`}}
+      className="mt-6 rounded-full h-40 w-40 bg-cover bg-center bg-no-repeat ring-4 ring-white"
+    />
+    <div className="mt-6 text-white text-3xl">Sooraj S Nair</div>
+    <div className="mt-1 mb-3 text-gray-500 text-sm">Frontend Developer • Javascript • ReactJS • NodeJS • Firebase</div>
+    <div className="mx-10 mt-2 p-10 bg-gray-900 h-auto text-base font-bold rounded-xl code">
+      <div className="flex my-1 text-white">
+        <span className="text-gray-700 ml-1 mr-3">1</span>
+        <span className="text-red-400 mx-0.5">const</span>
+        <span className="text-purple-400 mx-0.5">Sooraj</span>
+        <span className="text-red-400 mx-0.5">=</span>
+        <span className="mx-0.5">(</span>
+        <span className="mx-0.5">)</span>
+        <span className="text-red-400 mx-0.5">{"=>"}</span>
+        <span className="mx-0.5">{"{"}</span>
       </div>
-    </Transition>
-  )
-}
+      <div className="flex flex-wrap my-1 text-white">
+        <span className="text-gray-700 ml-1 mr-3">2</span>
+        <span className="text-red-400 ml-5 mx-0.5">let</span>
+        <span className="text-white mx-0.5">experiencesWith</span>
+        <span className="text-red-400 mx-0.5">=</span>
+        <span className="mx-0.5">[</span>
+        <span className="text-blue-300 mx-0.5">{"'HTML',"}</span>
+        <span className="text-blue-300 mx-0.5">{"'CSS',"}</span>
+        <span className="text-blue-300 mx-0.5">{"'Javascript',"}</span>
+        <span className="text-blue-300 mx-0.5">{"'ReactJS',"}</span>
+        <span className="text-blue-300 mx-0.5">{"'NodeJS',"}</span>
+        <span className="text-blue-300 mx-0.5">{"'Firebase',"}</span>
+        <span className="text-blue-300 mx-0.5">{"'AngularJS',"}</span>
+        <span className="text-blue-300 mx-0.5">{"'Bootstrap',"}</span>
+        <span className="text-blue-300 mx-0.5">{"'Tailwind'"}</span>
+        <span className="mx-0.5">]</span>
+        <span className="mx-0.5">;</span>
+      </div>
+      <div className="flex my-1 text-white">
+        <span className="text-gray-700 ml-1 mr-3">3</span>
+        <span className="text-white mx-0.5">{"};"}</span>
+      </div>
+    </div>
+  </div>
+);
 
 export default About;
