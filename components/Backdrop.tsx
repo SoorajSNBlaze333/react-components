@@ -14,6 +14,10 @@ const Backdrop = (props: BackdropProps) => {
     >
       {children}
     </div>
+
+    // <div className="h-full bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 bg-cover bg-center bg-no-repeat flex justify-center items-center">
+    //   {children}
+    // </div>
   )
 };
 

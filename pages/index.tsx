@@ -20,6 +20,9 @@ export default function Home(props: HomeProps) {
       <Backdrop backgroundImage={MacOS}>
         <CommandExecuter /> 
       </Backdrop>
+      <small className="fixed bottom-1 text-center text-gray-300 font-semibold inset-x-0">
+        Made with NextJS, React, Tailwind and 🤍
+      </small>
       <Spotlight />
     </>
   );

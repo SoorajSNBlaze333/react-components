@@ -9,7 +9,8 @@ html, body, #__next {
 
 body {
   margin: 0;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
+  font-family: 'IBM Plex Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -32,9 +33,14 @@ body {
 }
 
 .spotlight-wrapper {
-  top: 90%;
+  top: 88%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.about {
+  height: 500px;
+  width: 700px;
 }
 
 .spotlight {

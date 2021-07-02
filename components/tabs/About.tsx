@@ -1,49 +1,27 @@
 import React from "react";
-import Sooraj from "../../assets/sooraj.jpg"
+import Sooraj from "../../assets/me.png"
 
-const About = () => (
-  <div className="h-full w-full flex items-center flex-col">
-    <div
-      style={{ backgroundImage: `url(${Sooraj.src})`}}
-      className="mt-6 rounded-full h-40 w-40 bg-cover bg-center bg-no-repeat ring-4 ring-white"
-    />
-    <div className="mt-6 text-white text-3xl">Sooraj S Nair</div>
-    <div className="mt-1 mb-3 text-gray-500 text-sm">Frontend Developer • Javascript • ReactJS • NodeJS • Firebase</div>
-    <div className="mx-10 mt-2 p-10 bg-gray-900 h-auto text-base font-bold rounded-xl code">
-      <div className="flex my-1 text-white">
-        <span className="text-gray-700 ml-1 mr-3">1</span>
-        <span className="text-red-400 mx-0.5">const</span>
-        <span className="text-purple-400 mx-0.5">Sooraj</span>
-        <span className="text-red-400 mx-0.5">=</span>
-        <span className="mx-0.5">(</span>
-        <span className="mx-0.5">)</span>
-        <span className="text-red-400 mx-0.5">{"=>"}</span>
-        <span className="mx-0.5">{"{"}</span>
-      </div>
-      <div className="flex flex-wrap my-1 text-white">
-        <span className="text-gray-700 ml-1 mr-3">2</span>
-        <span className="text-red-400 ml-5 mx-0.5">let</span>
-        <span className="text-white mx-0.5">experiencesWith</span>
-        <span className="text-red-400 mx-0.5">=</span>
-        <span className="mx-0.5">[</span>
-        <span className="text-blue-300 mx-0.5">{"'HTML',"}</span>
-        <span className="text-blue-300 mx-0.5">{"'CSS',"}</span>
-        <span className="text-blue-300 mx-0.5">{"'Javascript',"}</span>
-        <span className="text-blue-300 mx-0.5">{"'ReactJS',"}</span>
-        <span className="text-blue-300 mx-0.5">{"'NodeJS',"}</span>
-        <span className="text-blue-300 mx-0.5">{"'Firebase',"}</span>
-        <span className="text-blue-300 mx-0.5">{"'AngularJS',"}</span>
-        <span className="text-blue-300 mx-0.5">{"'Bootstrap',"}</span>
-        <span className="text-blue-300 mx-0.5">{"'Tailwind'"}</span>
-        <span className="mx-0.5">]</span>
-        <span className="mx-0.5">;</span>
-      </div>
-      <div className="flex my-1 text-white">
-        <span className="text-gray-700 ml-1 mr-3">3</span>
-        <span className="text-white mx-0.5">{"};"}</span>
-      </div>
+const About = () => {
+  return (
+    <div className="bg-gray-800 rounded-md custom-shadow about">
+      <p className="mt-3 px-3 text-4xl w-full text-white text-center">Sooraj S Nair</p>
+      <p className="mt-1 mb-3 px-3 text-sm w-full text-gray-400 text-center">
+        Frontend developer • Javascript • ReactJS • NodeJS • Firebase
+      </p>
+      <span className="w-full h-auto flex justify-center mb-0">
+        <span
+          style={{ backgroundImage: `url(${Sooraj.src})`, height: "250px", width: "300px" }}
+          className="text-center bg-cover bg-center bg-no-repeat"
+        />
+      </span>
+      <p className="mt-1 px-4 w-full text-sm text-gray-400 text-center">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+      <small className="mt-10 block px-3 w-full text-center text-gray-500">
+        [You can search for my projects, blogs, socials and other things below]
+      </small>
     </div>
-  </div>
-);
+  )
+};
 
 export default About;
