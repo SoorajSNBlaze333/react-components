@@ -3,52 +3,10 @@
 @tailwind utilities;
 
 html, body, #__next {
+  margin: 0;
   height: 100vh;
   width: 100vw;
-}
-
-body {
-  margin: 0;
-  /* font-family: sans-serif; */
   font-family: 'IBM Plex Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.code {
-  font-family: 'IBM Plex Mono', monospace;
-}
-
-.terminal {
-  font-family: 'IBM Plex Mono', monospace;
-  caret-color: white;
-}
-
-.custom-shadow {
-  box-shadow: 0px 8px 10px 2px rgb(0, 0, 0, 0.50);
-}
-
-.complete {
-  line-height: 1.4 !important;
-}
-
-.spotlight-wrapper {
-  top: 88%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.about {
-  height: 500px;
-  width: 700px;
-}
-
-.spotlight {
-  height: 50px;
-  width: 700px;
-}
-
-.hints {
-  left: 50%;
-  transform: translate(-50%, 0%);
 }
