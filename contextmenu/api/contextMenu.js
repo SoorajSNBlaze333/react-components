@@ -10,7 +10,7 @@ const contextMenu = {
       y: event.clientY,
       ...data
     }
-    return emitter.dispatch('react-context-update-hook-#001', { ...newData });
+    return emitter.dispatch('react-context-update-hook', { ...newData });
   },
 };
 

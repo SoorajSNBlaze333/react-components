@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
 import { Menu as UIMenu } from '@headlessui/react';
-import { useContextMenu } from '../index';
 
 const SubMenu = ({ children, text, ...props }) => {
   const [state, setState] = useState({ x: 0, y: 0 });
   const [childrenVisible, setChildrenVisible] = useState(false);
-  const { update } = useContextMenu();
 
   const handleMouseOver = (e) => {
     if (!childrenVisible) {
       setState({ x: e.target.offsetWidth, y: e.target.offsetTop });
       setChildrenVisible(true);
-      update({ submenuVisible: true, mouse: { x: e.clientX, y: e.clientY }});
     }
   }
 
-  const handleMouseOut = (e) => {
-    if (childrenVisible) {
-      setChildrenVisible(false);
-      update({ submenuVisible: false })
-    }
+  const handleMouseOut = () => {
+    if (childrenVisible) setChildrenVisible(false);
   }
 
   return (

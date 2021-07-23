@@ -1,20 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useState } from 'react';
 import { Menu as UIMenu, Transition } from '@headlessui/react';
-import { useContextMenu, useClickOutside } from '../index';
+import { useClickOutside, emitter } from '../index';
 
-const Menu = ({ children }) => {
+const Menu = ({ children, id }) => {
   const menuRef = useRef(null);
-  const { state, close } = useContextMenu();
-  const { show, x, y } = state;
+  const [state, setState] = useState({ show: false, x: 0, y: 0 });
 
-  const handleClose = useCallback(() => close(), []);
+  const handleEvent = (data) => {
+    if (data.id === id) {
+      setState((prev) => ({ ...prev, ...data }))
+    }
+  }
+
+  const handleClose = useCallback(() => handleEvent({ id, show: false }), []);
   useClickOutside(menuRef, handleClose);
 
   useEffect(() => {
+    emitter.subscribe('react-context-update-hook', handleEvent);
     return () => {
-      console.log('unmounted Menu')
+      emitter.unsubscribe('react-context-update-hook');
     }
   }, []);
 
@@ -22,7 +28,7 @@ const Menu = ({ children }) => {
     <UIMenu as="div" className="inline-block text-left">
       <Transition
         appear
-        show={show}
+        show={state.show}
         as="div"
         enter="transition ease-out duration-100"
         enterFrom="transform opacity-0 scale-95"
@@ -31,7 +37,7 @@ const Menu = ({ children }) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
         className="absolute inset-0 h-48 w-56"
-        style={{ transform: `translate(${x}px, ${y}px)` }}
+        style={{ transform: `translate(${state.x}px, ${state.y}px)` }}
       >
         <div ref={menuRef}>
           <UIMenu.Items className="relative right-0 w-56 origin-top-right bg-white divide-y divide-gray-100 rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">

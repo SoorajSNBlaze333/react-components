@@ -8,7 +8,7 @@ interface HomeProps {
 export default function Home(props: HomeProps) {
   return (
     <div className="h-full w-full flex justify-center items-center">
-      <Menu>
+      <Menu id="context-menu-1">
         <MenuItem as="div">Item 1</MenuItem>
         <MenuItem as="div">Item 2</MenuItem>
         <SubMenu text="submenu1">
@@ -25,7 +25,10 @@ export default function Home(props: HomeProps) {
           <MenuItem as="div">Item 6</MenuItem>
         </SubMenu>
       </Menu>
-      <div onContextMenu={(event) => contextMenu.open({ event })} className="text-3xl">
+      <div
+        onContextMenu={(event) => contextMenu.open({ event, id: "context-menu-1" })}
+        className="text-3xl"
+      >
         click me to toggle context
       </div>
     </div>
