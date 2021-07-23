@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, MenuItem, SubMenu, contextMenu } from '../components/contextmenu/ContextMenu'
+import { Menu, MenuItem, SubMenu, contextMenu } from '../contextmenu'
 
 interface HomeProps {
   title: string,
@@ -7,7 +7,7 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   return (
-    <>
+    <div className="h-full w-full flex justify-center items-center">
       <Menu>
         <MenuItem as="div">Item 1</MenuItem>
         <MenuItem as="div">Item 2</MenuItem>
@@ -24,26 +24,10 @@ export default function Home(props: HomeProps) {
           <MenuItem as="div">Item 5</MenuItem>
           <MenuItem as="div">Item 6</MenuItem>
         </SubMenu>
-        <SubMenu text="submenu2">
-          <MenuItem as="div">Item 1</MenuItem>
-          <MenuItem as="div">Item 2</MenuItem>
-          <MenuItem as="div">Item 3</MenuItem>
-          <MenuItem as="div">Item 4</MenuItem>
-          <MenuItem as="div">Item 5</MenuItem>
-          <MenuItem as="div">Item 6</MenuItem>
-        </SubMenu>
-        <SubMenu text="submenu3">
-          <MenuItem as="div">Item 1</MenuItem>
-          <MenuItem as="div">Item 2</MenuItem>
-          <MenuItem as="div">Item 3</MenuItem>
-          <MenuItem as="div">Item 4</MenuItem>
-          <MenuItem as="div">Item 5</MenuItem>
-          <MenuItem as="div">Item 6</MenuItem>
-        </SubMenu>
       </Menu>
-      <div onContextMenu={(event) => contextMenu.update({ show: true, event })}>
+      <div onContextMenu={(event) => contextMenu.open({ event })} className="text-3xl">
         click me to toggle context
       </div>
-    </>
+    </div>
   );
 }
