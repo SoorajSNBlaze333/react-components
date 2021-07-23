@@ -7,7 +7,7 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   return (
-    <div className="h-full w-full flex justify-center items-center">
+    <div className="h-full w-full flex justify-start items-start">
       <Menu id="context-menu-1">
         <MenuItem as="div">Item 1</MenuItem>
         <MenuItem as="div">Item 2</MenuItem>
@@ -17,7 +17,14 @@ export default function Home(props: HomeProps) {
           <MenuItem as="div">Item 3</MenuItem>
           <MenuItem as="div">Item 4</MenuItem>
           <MenuItem as="div">Item 5</MenuItem>
-          <MenuItem as="div">Item 6</MenuItem>
+          <SubMenu text="submenu2">
+            <MenuItem as="div">Item 1</MenuItem>
+            <MenuItem as="div">Item 2</MenuItem>
+            <MenuItem as="div">Item 3</MenuItem>
+            <MenuItem as="div">Item 4</MenuItem>
+            <MenuItem as="div">Item 5</MenuItem>
+            <MenuItem as="div">Item 6</MenuItem>
+          </SubMenu>
         </SubMenu>
       </Menu>
       <div

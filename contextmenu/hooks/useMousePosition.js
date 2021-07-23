@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, useRef } from "react";
-import { throttle } from "lodash";
+import { throttle } from "../index";
 
 export const useMousePosition = () => {
   const mountedRef = useRef(true);
