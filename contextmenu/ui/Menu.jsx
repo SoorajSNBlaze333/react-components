@@ -53,9 +53,3 @@ Menu.displayName = 'Menu';
 
 export default Menu;
 
-
-{/* {(submenuVisible) && (
-  <svg height="210" width="500" className="absolute inset-0">
-    <polygon points={`${mouse.x},${mouse.y} 100,200 100,10`} style={{ fill: "lime", stroke: "purple", strokeWidth :1 }} />
-  </svg>
-)} */}

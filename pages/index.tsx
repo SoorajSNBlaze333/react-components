@@ -18,11 +18,6 @@ export default function Home(props: HomeProps) {
           <MenuItem as="div">Item 4</MenuItem>
           <MenuItem as="div">Item 5</MenuItem>
           <MenuItem as="div">Item 6</MenuItem>
-          <MenuItem as="div">Item 2</MenuItem>
-          <MenuItem as="div">Item 3</MenuItem>
-          <MenuItem as="div">Item 4</MenuItem>
-          <MenuItem as="div">Item 5</MenuItem>
-          <MenuItem as="div">Item 6</MenuItem>
         </SubMenu>
       </Menu>
       <div
