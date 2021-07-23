@@ -92,6 +92,7 @@ const MenuItem = ({ children, ...props }) => (
 );
 
 const SubMenu = ({ children, text, ...props }) => {
+  const [mouse, setMouse] = useState({ mouseX: 0, mouseY: 0 });
   const [state, setState] = useState({ x: 0, y: 0 });
   const [childrenVisible, setChildrenVisible] = useState(false);
 
@@ -100,6 +101,7 @@ const SubMenu = ({ children, text, ...props }) => {
       setState({ x: e.target.offsetWidth, y: e.target.offsetTop });
       setChildrenVisible(true);
     }
+    setMouse({ mouseX: e.clientX, mouseY: e.clientY })
   }
 
   const handleMouseOut = (e) => {
@@ -114,12 +116,18 @@ const SubMenu = ({ children, text, ...props }) => {
         onMouseMove={handleMouseOver}
         onMouseLeave={handleMouseOut}
       >
-        {text}
+        <span>{text}</span>
+        {(childrenVisible) && (
+          <span
+            className="absolute"
+            style={{ }}
+          />
+        )}
         {(childrenVisible) && (
           <div
             id="submenu_child"
-            className="absolute inset-0 h-48 bg-white divide-y divide-gray-100 rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-            style={{ transform: `translate(${state.x}px, ${state.y}px)` }}
+            className="absolute inset-0 bg-white divide-y divide-gray-100 rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none h-auto"
+            style={{ transform: `translate(${state.x}px, ${state.y}px)`, height: `${37 * children.length}px` }}
           >
             {children}
           </div>
@@ -152,11 +160,11 @@ const Menu = ({ children }) => {
         leave="transition ease-in duration-75"
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
-        className="absolute inset-0 h-48"
+        className="absolute inset-0 h-48 w-56"
         style={{ transform: `translate(${x}px, ${y}px)` }}
       >
         <div ref={menuRef}>
-          <UIMenu.Items className="relative right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <UIMenu.Items className="relative right-0 w-56 origin-top-right bg-white divide-y divide-gray-100 rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             {children}
           </UIMenu.Items>
         </div>
