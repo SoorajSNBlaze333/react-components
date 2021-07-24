@@ -17,7 +17,7 @@ export default function Home(props: HomeProps) {
           <MenuItem as="div">Item 3</MenuItem>
           <MenuItem as="div">Item 4</MenuItem>
           <MenuItem as="div">Item 5</MenuItem>
-          <SubMenu text="submenu2">
+          <SubMenu text="submenu1.2">
             <MenuItem as="div">Item 1</MenuItem>
             <MenuItem as="div">Item 2</MenuItem>
             <MenuItem as="div">Item 3</MenuItem>
@@ -25,6 +25,11 @@ export default function Home(props: HomeProps) {
             <MenuItem as="div">Item 5</MenuItem>
             <MenuItem as="div">Item 6</MenuItem>
           </SubMenu>
+        </SubMenu>
+        <SubMenu text="submenu1">
+          <MenuItem as="div">Item 1</MenuItem>
+          <MenuItem as="div">Item 2</MenuItem>
+          <MenuItem as="div">Item 3</MenuItem>
         </SubMenu>
       </Menu>
       <div

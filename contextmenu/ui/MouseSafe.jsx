@@ -19,12 +19,13 @@ export default function MouseSafe({ parentRef }) {
       style={{
         position: "absolute",
         top: 0,
-        backgroundColor: "rgba(255,0,0,0.1)", // Debug
+        // backgroundColor: "rgba(255,0,0,0.1)", // Debug
         right: getRight(positions),
         left: getLeft(positions),
         height: h,
         width: getWidth(positions),
         clipPath: getClipPath(positions),
+        zIndex: 9999,
       }}
     />
   );
