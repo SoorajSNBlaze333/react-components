@@ -1,5 +1,6 @@
 import React from 'react';
-import { Menu, MenuItem, SubMenu, contextMenu } from '../contextmenu'
+// import { Menu, MenuItem, SubMenu, contextMenu } from '../contextmenu'
+import { Filter } from '../filter';
 
 interface HomeProps {
   title: string,
@@ -7,8 +8,8 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   return (
-    <div className="h-full w-full flex justify-start items-start">
-      <Menu id="context-menu-1">
+    <div className="h-full w-full flex justify-center items-center">
+      {/* <Menu id="context-menu-1">
         <MenuItem as="div">Item 1</MenuItem>
         <MenuItem as="div">Item 2</MenuItem>
         <SubMenu text="submenu1">
@@ -37,7 +38,8 @@ export default function Home(props: HomeProps) {
         className="text-3xl"
       >
         click me to toggle context
-      </div>
+      </div> */}
+      <Filter />
     </div>
   );
 }
