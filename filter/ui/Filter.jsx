@@ -1,6 +1,60 @@
-import React, { Fragment } from 'react';
-import useFilter from '../hooks/useFilter';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { Fragment, useState, useEffect } from 'react';
 import { Transition, Dialog } from '@headlessui/react';
+import useFilter from '../hooks/useFilter';
+
+const Form = ({ handleSubmit }) => {
+  const { filters } = useFilter().state;
+  const [currentLevel, setCurrentLevel] = useState(null);
+  const [list, setList] = useState(Object.keys(filters))
+
+  const handleSearch = (e) => {
+    const query = e.target.value.trim().toLowerCase();
+    const currentList = currentLevel ? Object.keys(filters[currentLevel]) : Object.keys(filters);
+    setList(() => {
+      if (query.length) return currentList.filter((l) => l.toLowerCase().includes(query));
+      return currentList;
+    });
+  }
+
+  const handleFilter = (key) => {
+    setCurrentLevel((prev) => {
+      const prevKey = prev ? filters[prev][key] : filters[key];
+      if (prevKey && typeof prevKey !== 'object') return null;
+      return key;
+    });
+  };
+
+  useEffect(() => {
+    setList(currentLevel ? Object.keys(filters[currentLevel]) : Object.keys(filters));
+  }, [currentLevel])
+
+  const renderOptions = () => {
+    return list.map((filterKey, index) => {
+      return (
+        <li
+          key={index}
+          onClick={() => handleFilter(filterKey)}
+          className="w-full p-4 cursor-pointer hover:bg-gray-100 focus:outline-none"
+        >
+          {filterKey}
+        </li>
+      )
+    });
+  };
+  
+  return (
+    <form onSubmit={handleSubmit} className="w-full h-full">
+      <input
+        className="w-full h-16 p-4 placeholder-gray-500 text-xl"
+        placeholder="Add Filter"
+        autoFocus
+        onChange={(e) => handleSearch(e)}
+      />
+      <ul>{renderOptions()}</ul>
+    </form>
+  )
+}
 
 export default function Filter() {
   const { state, toggle } = useFilter();
@@ -47,17 +101,8 @@ export default function Filter() {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-md">
-              <form onSubmit={handleSubmit}>
-                <input autoFocus placeholder="Add Filter" />
-                <button
-                  type="submit"
-                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                  onClick={toggle}
-                >
-                  Submit
-                </button>
-              </form>
+            <div className="inline-block w-full max-w-md my-8 overflow-hidden transition-all transform bg-white shadow-xl rounded-md">
+              <Form handleSubmit={handleSubmit} />
             </div>
           </Transition.Child>
         </Dialog>

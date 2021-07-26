@@ -1,8 +1,21 @@
 import { useReducer } from "react";
 
 const initialState = {
-  show: false,
-  filters: [],
+  show: true,
+  filters: {
+    'Filter by status': {
+      'Under Review': 'under_review',
+      'Planned': 'planned',
+      'In Progress': 'in_progress',
+      'Completed': 'completed',
+    },
+    'Filter by assignee': {
+      'Assignee One': 1,
+      'Assignee Two': 2,
+      'Assignee Three': 3,
+      'Assignee Four': 4,
+    }
+  },
 }
 
 function filterReducer(state, action) {
