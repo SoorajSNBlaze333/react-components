@@ -1,14 +1,16 @@
 import React from 'react';
-import { Filter } from '../filter';
+import { QuickSearch } from '../components/quicksearch';
 
-interface HomeProps {
-  title: string,
-}
+export default function Home() {
+  const handleSelect = (val: any) => {
+    console.log(val)
+  }
 
-export default function Home(props: HomeProps) {
   return (
     <div className="h-screen w-screen flex justify-center items-center">
-      <Filter />
+      <QuickSearch data={[
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+      ]}/>
     </div>
   );
 }

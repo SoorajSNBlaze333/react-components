@@ -1,25 +1,32 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Form from './Form';
 import { Transition, Dialog } from '@headlessui/react';
-import useFilter from '../hooks/useFilter';
+import useQuick from '../hooks/useQuick';
 
-export default function Filter() {
-  const { state, toggle } = useFilter();
-  const { show } = state;
+export default function QuickSearch({ data = [] }) {
+  const { state, dispatch } = useQuick();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitted Form");
   }
 
+  const handleToggle = () => {
+    dispatch({ type: "update", value: { show: !state.show } })
+  }
+
+  useEffect(() => {
+    dispatch({ type: "update", value: { data } })
+  }, []);
+
   const renderDialog = () => {
     return (
-      <Transition appear show={show} as={Fragment}>
+      <Transition appear show={state.show} as={Fragment}>
         <Dialog
           as="div"
           className="fixed flex items-center justify-center inset-0 z-10 overflow-y-auto"
-          onClose={toggle}
+          onClose={handleToggle}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -47,7 +54,9 @@ export default function Filter() {
 
   return (
     <>
-      <div onClick={toggle} className="cursor-pointer border-2 px-3 py-1 rounded">Filters</div>
+      <div onClick={handleToggle} className="cursor-pointer border-2 px-3 py-1 rounded">
+        Quick Search
+      </div>
       {renderDialog()}
     </>
   )
