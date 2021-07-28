@@ -10,6 +10,18 @@ export default function Home() {
     <div className="h-screen w-screen flex justify-center items-center">
       <QuickSearch data={[
         { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
+        { key: 'Hello', category: 'text', value: 'hello', onSelect: handleSelect },
       ]}/>
     </div>
   );

@@ -3,24 +3,36 @@ import { useReducer } from "react";
 
 const initialState = {
   show: false,
-  data: [],
+  list: [],
 }
 
 function stateReducer(state, action) {
   switch (action.type) {
-    case "update": {
+    case "show": {
       return {
         ...state,
-        ...action.value
+        show: true
       }
     }
+    case "hide": {
+      return {
+        ...state,
+        show: false
+      }
+    }
+    case "data": {
+      return {
+        ...state,
+        list: [...action.value]
+      }
+    }
+    default: break;
   }
   return state;
 }
 
 const useQuick = () => {
   const [state, dispatch] = useReducer(stateReducer, initialState);
-  console.log(state);
   return { state, dispatch };
 };
 

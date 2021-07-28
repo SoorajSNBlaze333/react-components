@@ -6,23 +6,31 @@ import useQuick from '../hooks/useQuick';
 
 export default function QuickSearch({ data = [] }) {
   const { state, dispatch } = useQuick();
+  const { show, list } = state;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitted Form");
   }
 
+  const handleSearch = (e) => {
+    const query = e.target.value.trim().toLowerCase();
+    // TODO: Search function goes here
+    // const newList = search(list, query)
+    // update the new list using the useQuick dispatch
+  }
+
   const handleToggle = () => {
-    dispatch({ type: "update", value: { show: !state.show } })
+    dispatch({ type: show ? "hide" : "show" })
   }
 
   useEffect(() => {
-    dispatch({ type: "update", value: { data } })
+    dispatch({ type: "data", value: data });
   }, []);
 
   const renderDialog = () => {
     return (
-      <Transition appear show={state.show} as={Fragment}>
+      <Transition appear show={show} as={Fragment}>
         <Dialog
           as="div"
           className="fixed flex items-center justify-center inset-0 z-10 overflow-y-auto"
@@ -46,7 +54,11 @@ export default function QuickSearch({ data = [] }) {
           <span className="inline-block h-screen align-middle" aria-hidden="true">
             &#8203;
           </span>
-          <Form handleSubmit={handleSubmit} />
+          <Form
+            list={list}
+            handleSubmit={handleSubmit}
+            handleSearch={handleSearch}
+          />
         </Dialog>
       </Transition>
     )
