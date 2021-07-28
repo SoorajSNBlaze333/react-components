@@ -1,21 +1,14 @@
-import { useReducer } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useReducer } from "react";
 
 const initialState = {
-  show: true,
-  filters: {
-    'Filter by status': {
-      'Under Review': 'under_review',
-      'Planned': 'planned',
-      'In Progress': 'in_progress',
-      'Completed': 'completed',
-    },
-    'Filter by assignee': {
-      'Assignee One': 1,
-      'Assignee Two': 2,
-      'Assignee Three': 3,
-      'Assignee Four': 4,
-    }
-  },
+  show: false,
+  data: [
+    { key: 'Under review', category: 'status', value: 'under_review' },
+    { key: 'Planned', category: 'status', value: 'planned' },
+    { key: 'In Progres', category: 'status', value: 'in_progress' },
+    { key: 'Completed', category: 'status', value: 'completed' },
+  ],
 }
 
 function filterReducer(state, action) {
