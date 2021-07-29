@@ -2,22 +2,19 @@
 import React, { useRef } from 'react';
 import { Transition } from '@headlessui/react';
 
+const ITEM_CLASS = "w-full cursor-pointer transition duration-100 hover:bg-gray-100 hover:outline-none focus:outline-none flex justify-start items-center text-gray-700"
+
 export default function Form({ list, handleSubmit, handleSearch }) {
   const inputRef = useRef(null);
 
   const renderOptions = () => {
     const limitedList = list.slice(0, 6);
-    return limitedList.map((item, index) => {
-      return (
-        <li
-          key={index}
-          onClick={() => item.onSelect(item.value)}
-          className="w-full p-4 cursor-pointer transition duration-100 hover:bg-gray-100 focus:outline-none flex justify-start items-center text-gray-700"
-        >
-          {item.key}
-        </li>
-      )
-    });
+    return limitedList.map((item, index) => (<div
+      key={index}
+      className={ITEM_CLASS}
+    >
+      {item.item}
+    </div>));
   };
   
   return (
@@ -34,7 +31,7 @@ export default function Form({ list, handleSubmit, handleSearch }) {
         <form onSubmit={handleSubmit} className="w-full h-full">
           <span className="h-16 w-full flex">
             <input
-              className="w-full h-full p-4 placeholder-gray-400 text-gray-800 text-xl"
+              className="w-full h-full p-4 placeholder-gray-400 text-gray-800 text-xl focus:outline-none border-b-2 border-gray-100"
               placeholder="Search for..."
               autoFocus
               onChange={handleSearch}
@@ -42,10 +39,11 @@ export default function Form({ list, handleSubmit, handleSearch }) {
             />
           </span>  
         </form>
-        <small className="w-full block py-1 px-4 bg-gray-200 font-light">
-          Quick Search
-        </small>
-        <ul>{renderOptions()}</ul>
+        {/* TODO: Only if values exist in search show this */}
+        {/* {() && (<small className="w-full block py-1 px-4 bg-gray-200 font-light">
+          Showing {list.length} results
+        </small>)} */}
+        {renderOptions()}
       </div>
     </Transition.Child>
   )

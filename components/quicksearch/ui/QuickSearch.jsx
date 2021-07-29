@@ -46,7 +46,7 @@ export default function QuickSearch({ data = [] }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-300 bg-opacity-30" />
+              <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-30" />
             </Transition.Child>
           </div>
 
