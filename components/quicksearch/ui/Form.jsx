@@ -38,10 +38,11 @@ export default function Form({ list, handleSubmit, handleSearch }) {
             />
           </span>  
         </form>
-        {/* TODO: Only if values exist in search show this */}
-        {/* {() && (<small className="w-full block py-1 px-4 bg-gray-200 font-light">
-          Showing {list.length} results
-        </small>)} */}
+        {(Boolean(list.length) && inputRef.current.value) && (
+          <small className="w-full block py-1 px-4 bg-gray-200 font-light">
+            Showing {list.length} results
+          </small>
+        )}
         {renderOptions()}
       </div>
     </Transition.Child>
