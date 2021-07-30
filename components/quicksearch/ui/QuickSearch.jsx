@@ -3,36 +3,22 @@ import React, { Fragment, useEffect, useState } from 'react';
 import Form from './Form';
 import { Transition, Dialog } from '@headlessui/react';
 import useQuick from '../hooks/useQuick';
-import { search } from '../lib/utils';
 
-export default function QuickSearch({ data = [] }) {
+export default function QuickSearch({ data = [], emptyContent }) {
   const { state, dispatch } = useQuick();
   const { show, list } = state;
   const [listData, setListData] = useState(list);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitted Form");
-  }
-
   const handleSearch = (e) => {
     const query = e.target.value.trim();
-    const newList = search(list, query);
-    setListData(() => {
-      if (newList.length) return newList;
-      else return list;
-    });
+    // TODO: Add search here
   }
 
-  const handleToggle = () => {
-    dispatch({ type: show ? "hide" : "show" })
-  }
+  const handleToggle = () =>  dispatch({ type: show ? "hide" : "show" });
 
   const handleShortcut = (e) => {
     if (
-      e.key === '/'
-      && e.keyCode === 191
-      && e.metaKey
+      e.keyCode === 81
       && !show
     ) dispatch({ type: "show" })
   }
@@ -77,7 +63,7 @@ export default function QuickSearch({ data = [] }) {
           </span>
           <Form
             list={listData.slice(0, 6)}
-            handleSubmit={handleSubmit}
+            emptyContent={emptyContent}
             handleSearch={handleSearch}
           />
         </Dialog>
