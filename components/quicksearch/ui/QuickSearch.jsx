@@ -1,12 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Form from './Form';
 import { Transition, Dialog } from '@headlessui/react';
 import useQuick from '../hooks/useQuick';
+import { search } from '../lib/utils';
 
 export default function QuickSearch({ data = [] }) {
   const { state, dispatch } = useQuick();
   const { show, list } = state;
+  const [listData, setListData] = useState(list);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,19 +16,38 @@ export default function QuickSearch({ data = [] }) {
   }
 
   const handleSearch = (e) => {
-    const query = e.target.value.trim().toLowerCase();
-    // TODO: Search function goes here
-    // const newList = search(list, query)
-    // update the new list using the useQuick dispatch
+    const query = e.target.value.trim();
+    const newList = search(list, query);
+    setListData(() => {
+      if (newList.length) return newList;
+      else return list;
+    });
   }
 
   const handleToggle = () => {
     dispatch({ type: show ? "hide" : "show" })
   }
 
+  const handleShortcut = (e) => {
+    if (
+      e.key === '/'
+      && e.keyCode === 191
+      && e.metaKey
+      && !show
+    ) dispatch({ type: "show" })
+  }
+
   useEffect(() => {
     dispatch({ type: "data", value: data });
+    window.addEventListener('keydown', handleShortcut);
+    return () => {
+      window.removeEventListener('keydown', handleShortcut);
+    }
   }, []);
+
+  useEffect(() => {
+    setListData(list);
+  }, [list])
 
   const renderDialog = () => {
     return (
@@ -55,7 +76,7 @@ export default function QuickSearch({ data = [] }) {
             &#8203;
           </span>
           <Form
-            list={list}
+            list={listData.slice(0, 6)}
             handleSubmit={handleSubmit}
             handleSearch={handleSearch}
           />

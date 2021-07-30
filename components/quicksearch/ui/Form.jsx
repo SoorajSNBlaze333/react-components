@@ -2,20 +2,19 @@
 import React, { useRef } from 'react';
 import { Transition } from '@headlessui/react';
 
-const ITEM_CLASS = "w-full cursor-pointer transition duration-100 hover:bg-gray-100 hover:outline-none focus:outline-none flex justify-start items-center text-gray-700"
+const ITEM_CLASS = "w-full cursor-pointer transition duration-100 hover:bg-gray-100 hover:outline-none flex justify-start items-center text-gray-700"
 
 export default function Form({ list, handleSubmit, handleSearch }) {
   const inputRef = useRef(null);
 
-  const renderOptions = () => {
-    const limitedList = list.slice(0, 6);
-    return limitedList.map((item, index) => (<div
+  const renderOptions = () => list.map((item, index) => (
+    <div
       key={index}
       className={ITEM_CLASS}
     >
       {item.item}
-    </div>));
-  };
+    </div>
+  ));
   
   return (
     <Transition.Child
