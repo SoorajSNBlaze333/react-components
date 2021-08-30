@@ -12,13 +12,21 @@ function stateReducer(state, action) {
     case "number": {
       return {
         ...state,
+        previousValue: state.currentValue,
         currentValue: action.value.currentValue
+      }
+    }
+    case "operation": {
+      return {
+        ...state,
+        operation: action.value.operation
       }
     }
     case "calculate": {
       return {
         ...state,
-        operation: action.value.operation
+        currentValue: eval(`${state.currentValue}${state.operation}${state.previousValue}`),
+        operation: null
       }
     }
     default: break;
